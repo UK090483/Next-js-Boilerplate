@@ -7,23 +7,37 @@ import schemaTypes from 'all:part:@sanity/base/schema-type';
 // We import object and document schemas
 import blockContent from './blockContent';
 import category from './category';
-import post from './post';
+import post from './documents/post';
 import author from './author';
+
+import navigation from './documents/navigation'
+import navigationItem from './objects/NavigationItem'
+import navigationDropdown from './objects/navigationDropdown'
+import page from './documents/page'
+
+import indexPage from './documents/indexPage'
+import footer from './documents/footer'
+import SettingsSeo from './documents/settings-seo'
+import seo from './objects/Seo'
+import redirect from './documents/redirect'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
   // We name our schema
   name: 'default',
-  // Then proceed to concatenate our document type
-  // to the ones provided by any plugins that are installed
+  // Then 
   types: schemaTypes.concat([
-    // The following are document types which will appear
-    // in the studio.
+    navigation,
+    navigationItem,
+    navigationDropdown,
+    indexPage,
+    page,
+    SettingsSeo,
+    seo,
+    footer,
     post,
-    author,
+    redirect,
     category,
-    // When added to this list, object types can be used as
-    // { type: 'typename' } in other document schemas
     blockContent,
   ]),
 });

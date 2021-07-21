@@ -1,0 +1,117 @@
+/* eslint-disable import/no-cycle */
+// @ts-ignore
+import React from 'react';
+
+import BlockContent from '@sanity/block-content-to-react';
+
+import LinkMark, { linkMarkQuery } from '../marks/link';
+import { PageBuilderBlockBase } from '../pageBuilderQueries';
+import ButtonPlug, { buttonPlugQuery } from '../Plugs/ButtonPlug';
+import { downloadPlugQuery } from '../Plugs/DownLoadPlug';
+import EmbedPlug, { embedPlugQuery } from '../Plugs/EmbedPlug';
+import { imageGalleryPlugQuery } from '../Plugs/ImageGaleriePlug';
+import { imagePlugQuery } from '../Plugs/ImagePlug';
+import { innerSectionPlugQuery } from '../Plugs/innerSection';
+
+const marksQuery = `
+markDefs[]{
+  ...,
+  ${linkMarkQuery},
+}
+`;
+
+export const richTextQuery = `
+content[]{
+  ...,
+  ${marksQuery},
+  ${buttonPlugQuery},
+  ${embedPlugQuery},
+  ${imagePlugQuery},
+  ${imageGalleryPlugQuery},
+  ${innerSectionPlugQuery},
+  ${downloadPlugQuery},
+}
+`;
+
+export interface RichTextQueryResult extends PageBuilderBlockBase {
+  _type: 'richText' | 'block';
+  content: any[];
+}
+
+const pink = (props: any) => {
+  return <span className="text-frida-pink">{props.children}</span>;
+};
+const white = (props: any) => {
+  return <span className="text-frida-white">{props.children}</span>;
+};
+const frida = (props: any) => {
+  return <Frida textColor={props.mark.color} text={props.children} />;
+};
+const link = (props: any) => {
+  return <LinkMark {...props.mark}>{props.children}</LinkMark>;
+};
+
+const list = (props: any) => {
+  return (
+    <ul
+      className={`${'list-disc'} list-outside pl-8 text-base-fluid pb-3 leading-[1.1em]`}
+    >
+      {props.children}
+    </ul>
+  );
+};
+
+const classes: { [k: string]: string } = {
+  'custom-header-big': 'header-big',
+  'custom-header-medium': 'header-medium',
+  'custom-header-small': 'header-small',
+  'custom-subHeader': 'subheader',
+  normal: 'text-normal',
+  'custom-small': 'text-small',
+  'custom-xsmall': 'text-xsmall',
+};
+
+const BlockRenderer = (props: any) => {
+  const { style = 'normal' } = props.node;
+
+  if (/^custom/.test(style) || style === 'normal') {
+    return React.createElement(
+      'p',
+      { className: `${classes[style]}` },
+      props.children
+    );
+  }
+
+  if (style === 'blockquote') {
+    return <blockquote>- {props.children}</blockquote>;
+  }
+
+  return BlockContent.defaultSerializers.types.block(props);
+};
+
+const serializer = {
+  list,
+  types: {
+    button: ButtonPlug,
+    embed: EmbedPlug,
+    block: BlockRenderer,
+  },
+  marks: {
+    pink,
+    white,
+    frida,
+    link,
+  },
+};
+
+const RichText = (props: any) => {
+  const isBlock = props._type === 'block';
+  return (
+    <BlockContent
+      blocks={isBlock ? props : props.content}
+      serializers={serializer}
+    />
+  );
+};
+
+export default RichText;

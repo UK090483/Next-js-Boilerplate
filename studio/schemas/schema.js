@@ -21,6 +21,13 @@ import SettingsSeo from './documents/settings-seo'
 import seo from './objects/Seo'
 import redirect from './documents/redirect'
 
+import section from './pageComponents/Section'
+import defaultRichText from './pageComponents/defaultRichText'
+import figure from './objects/figure'
+
+import buttonPlug from './pageComponents/plugs/Button'
+import link from './objects/link'
+
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
   // We name our schema
@@ -39,5 +46,11 @@ export default createSchema({
     redirect,
     category,
     blockContent,
+    section,
+    defaultRichText,
+    figure,
+    buttonPlug,
+    link
+
   ]),
 });

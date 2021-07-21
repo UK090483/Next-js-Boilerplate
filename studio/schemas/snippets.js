@@ -4,7 +4,7 @@ export const defaultBockContent = {
   title: 'Page sections',
   description: 'Add, edit, and reorder sections',
   of: [
-    // { type: 'section' },
+    { type: 'section' },
     // { type: 'carouselHero' },
     // { type: 'artworks' },
     // { type: 'artists' },

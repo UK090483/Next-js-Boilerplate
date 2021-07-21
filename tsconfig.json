@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "lib": ["dom", "dom.iterable", "esnext"],
     "module": "esnext",
     "moduleResolution": "node",
@@ -32,7 +33,13 @@
 
     "jsx": "preserve",
     "noEmit": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+
+    "paths": {
+      "@components/*": ["./src/components/*"],
+      "@lib/*": ["./src/lib/*"],
+      "@src/*": ["./src/*"]
+    }
   },
   "exclude": ["./out/**/*", "./node_modules/**/*", "./studio/**/*"],
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]

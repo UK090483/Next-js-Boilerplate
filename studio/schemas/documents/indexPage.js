@@ -3,7 +3,7 @@ export default {
   type: 'document',
   name: 'indexPage',
   title: 'Landing Page',
-  __experimental_actions: ['update', /*"create", 'delete', 'publish' */ ],
+   __experimental_actions: ['update', /*"create", 'delete',*/ 'publish'  ],
   fields: [
     {
       title: 'Title',

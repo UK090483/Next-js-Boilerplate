@@ -16,6 +16,10 @@ module.exports = {
       '6xl': '4rem',
     },
     extend: {
+      spacing: {
+        app_side: '30px',
+        app_side_small: '20px',
+      },
       colors: {
         gray: {
           100: '#f7fafc',
@@ -43,5 +47,5 @@ module.exports = {
     },
   },
   variants: {},
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
 };

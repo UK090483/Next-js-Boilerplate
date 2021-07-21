@@ -3,6 +3,8 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import React from 'react';
 
+import { AppColor } from 'types';
+
 import Button from '../../components/buttons/button';
 import { buildInternalLink } from '../../lib/helper/buildInternalLink';
 
@@ -26,8 +28,8 @@ export type ButtonPlugResult = {
   label_en: string | null;
   internalLink: { slug: string; type: string } | null;
   link: string | null;
-  color: string | null;
-  bgColor: string | null;
+  color: AppColor | null;
+  bgColor: AppColor | null;
   position?: 'inline' | 'left' | 'right' | 'center';
 };
 

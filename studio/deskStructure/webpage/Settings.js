@@ -2,6 +2,7 @@ import S from '@sanity/desk-tool/structure-builder'
 
 import { FiSettings, FiGlobe, FiRepeat } from 'react-icons/fi'
 import { HiOutlineSortDescending } from 'react-icons/hi'
+import {GrConfigure} from 'react-icons/gr'
 
 import { GoThreeBars } from 'react-icons/go'
 
@@ -13,6 +14,15 @@ export default S.listItem()
     S.list()
       .title('Settings')
       .items([
+        S.listItem()
+          .title('Config')
+          .child(
+            S.editor()
+              .id('configSettings')
+              .schemaType('configSettings')
+              .documentId('configSettings')
+          )
+          .icon(GrConfigure),
         S.listItem()
           .title('Navigation')
           .child(

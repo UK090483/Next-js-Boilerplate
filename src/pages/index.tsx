@@ -3,7 +3,7 @@ import React from 'react';
 import { GetStaticProps } from 'next';
 
 import { handleStaticProps } from '@lib/handleStaticProps';
-import { usePreviewSubscription } from '@lib/sanity';
+import sanity from '@lib/sanity';
 import PageTemplate, { PageProps } from '@src/pageTypes/page/Page';
 import { pageQuery } from '@src/pageTypes/page/pageQueries';
 
@@ -14,7 +14,8 @@ const query = `*[_type == 'indexPage'][0]{
 
 const Page: React.FC<PageProps> = (props) => {
   const { data, lang, preview } = props;
-  const { data: pageData } = usePreviewSubscription(query, {
+
+  const { data: pageData } = sanity.usePreviewSubscription(query, {
     params: { slug: '/' },
     initialData: data,
     enabled: !!preview,

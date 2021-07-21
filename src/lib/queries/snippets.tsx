@@ -1,4 +1,6 @@
-export const imageMeta = `
+import { groq } from 'next-sanity';
+
+export const imageMeta = groq`
     alt,
     asset,
     crop,

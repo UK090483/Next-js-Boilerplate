@@ -6,4 +6,11 @@ import {
 import { config } from './config';
 
 export const imageBuilder = createImageUrlBuilder(config);
-export const usePreviewSubscription = createPreviewSubscriptionHook(config);
+const theExport: {
+  // https://github.com/microsoft/TypeScript/issues/9944
+  [index: string]: any;
+} = {
+  usePreviewSubscription: createPreviewSubscriptionHook(config),
+};
+
+export default theExport;

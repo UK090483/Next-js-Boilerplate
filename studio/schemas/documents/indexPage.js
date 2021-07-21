@@ -24,11 +24,11 @@ export default {
           .max(20)
           .warning('Should be under 20 characters')
     },
-    // {
-    //   name: 'pageHeader',
-    //   type: 'pageHeader',
-    //   title: 'Header'
-    // },
+    {
+      name: 'pageHeader',
+      type: 'pageHeader',
+      title: 'Header'
+    },
     defaultBockContent,
     {
       title: 'SEO / Share Settings',

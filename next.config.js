@@ -2,12 +2,28 @@
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 });
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 module.exports = withBundleAnalyzer({
   poweredByHeader: false,
   trailingSlash: true,
   basePath: '',
-  reactStrictMode: true,
+  webpack(config, options) {
+    const { dev, isServer } = options;
+
+    // Do not run type checking twice:
+    if (dev && isServer) {
+      config.plugins.push(new ForkTsCheckerWebpackPlugin());
+    }
+
+    // config.plugins.push(
+    //   new webpack.DefinePlugin({
+    //     'process.env.CONFIG_BUILD_ID': JSON.stringify(buildId),
+    //   })
+    // );
+
+    return config;
+  },
 
   env: {
     // Needed for Sanity powered data

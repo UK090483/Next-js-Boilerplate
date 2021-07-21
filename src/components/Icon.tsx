@@ -15,6 +15,21 @@ interface IconsObject {
 }
 
 const Icons: IconsObject = {
+  phone: () => {
+    return (
+      <svg
+        stroke="currentColor"
+        fill="none"
+        strokeWidth="2"
+        viewBox="0 0 24 24"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+      </svg>
+    );
+  },
   facebook: () => {
     return (
       <svg
@@ -218,7 +233,8 @@ type IconProps = {
     | 'x'
     | 'cart'
     | 'plus'
-    | 'minus';
+    | 'minus'
+    | 'phone';
 
   size?: 's' | 'm' | 'l';
   className?: string;
@@ -241,11 +257,15 @@ const Icon: React.FC<IconProps> = ({
     <span
       className={classNames(
         `block rounded-full `,
+
         {
-          'w-8 h-8 md:w-12 md:h-12 p-2': size === 'm',
+          'w-6 h-6 md:w-8 md:h-8 p-1.5': size === 's',
         },
         {
-          'w-8 h-8 p-2 ': size === 's',
+          'w-6 h-6 md:w-8 md:h-8 p-1.5': size === 'm',
+        },
+        {
+          'w-16 h-16 p-2 ': size === 'l',
         },
         className
       )}

@@ -8,20 +8,35 @@ type_,
 'slug':slug.current,
 footer->{${body}},
 ${body}
+'pageHeader':pageHeader{color},
 'site':{
   'navigation':*[_type=='navigation'][0]{
     'main': item[]{
+      'key':_key,
       label,
       label_en,
-      'items':item[]{
+      'slug':internalLink->slug.current,
+      'items':item[]{'key':_key,
                       label,
                       label_en,
-                      slug
+                      'slug':internalLink->slug.current,
                     }
       }
-  }
+  },
+ 'config':*[_type=='configSettings'][0]{
+   ...,
+ },
+
 }
 `;
+
+export type NavigationItem = {
+  key: string;
+  label: string;
+  labelEn: string;
+  slug: string;
+  items: Omit<NavigationItem, 'items'>[];
+};
 
 export type PageResult = {
   type_: 'page' | 'indexPage';
@@ -30,10 +45,17 @@ export type PageResult = {
   title_en?: string;
   slug: null | string;
   footer?: PageBodyResult;
+  pageHeader?: { color?: 'white' | 'black' };
 
   site: {
+    config?: {
+      kontaktAdress?: string;
+      kontaktMail?: string;
+      kontaktTel?: string;
+      url?: string;
+    };
     navigation: {
-      main: { label: string; labelEn: string; slug: string }[];
+      main: NavigationItem[];
     };
   };
 };

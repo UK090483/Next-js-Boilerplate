@@ -26,7 +26,14 @@ import defaultRichText from './pageComponents/defaultRichText'
 import figure from './objects/figure'
 
 import buttonPlug from './pageComponents/plugs/Button'
+import spacer  from './pageComponents/plugs/Spacer'
+
+import pageHeader from './objects/pageHeader'
 import link from './objects/link'
+
+import hero from './pageComponents/hero'
+
+import settingsConfig from './documents/settings-config'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -34,12 +41,15 @@ export default createSchema({
   name: 'default',
   // Then 
   types: schemaTypes.concat([
+    pageHeader,
+    spacer,
     navigation,
     navigationItem,
     navigationDropdown,
     indexPage,
     page,
     SettingsSeo,
+    settingsConfig,
     seo,
     footer,
     post,
@@ -47,10 +57,11 @@ export default createSchema({
     category,
     blockContent,
     section,
-    defaultRichText,
+     defaultRichText,
     figure,
     buttonPlug,
-    link
+    link,
+    hero
 
   ]),
 });

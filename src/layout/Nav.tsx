@@ -5,29 +5,26 @@ import classNames from 'classnames';
 import Link from 'next/link';
 import Popup from 'reactjs-popup';
 
+import { NavigationItem, PageResult } from '@src/pageTypes/page/pageQueries';
+
 import Icon from '../components/Icon';
 import useAnimationDelay from '../lib/hooks/useAnimationDelay';
 import { useMenu } from '../lib/store';
 
-interface INavItemProps {
-  label: string;
-  slug?: string;
-  items?: INavItemProps[];
-}
-
-const NI: React.FC<INavItemProps> = (props) => {
+const NI: React.FC<NavigationItem> = (props) => {
   const { items, label, slug } = props;
+
   if (!items) {
     return (
       <Link href={`/${slug || ''}`} passHref>
-        <a className="px-6">{label}</a>
+        <a className="px-6 font-bold">{label}</a>
       </Link>
     );
   }
   return (
     <Popup
       trigger={
-        <button className="px-6" type="button">
+        <button id="testId" className="px-6 font-bold" type="button">
           {label}
         </button>
       }
@@ -36,8 +33,8 @@ const NI: React.FC<INavItemProps> = (props) => {
     >
       <div className="flex flex-col bg-white">
         {items.map((i) => (
-          <Link key={i.label} href={`/${i.slug || ''}`} passHref>
-            <a className="p-3">{i.label}</a>
+          <Link key={i.key} href={`/${i.slug || ''}`} passHref>
+            <a className="p-3 font-bold">{i.label}</a>
           </Link>
         ))}
       </div>
@@ -47,11 +44,14 @@ const NI: React.FC<INavItemProps> = (props) => {
 
 const NavItem = React.memo(NI);
 
-interface INavProps {
-  items?: INavItemProps[];
-}
+// interface INavProps {
+//   items?: INavItemProps[];
+// }
+interface INavProps extends PageResult {}
 
-const Nav: React.FunctionComponent<INavProps> = ({ items }) => {
+const Nav: React.FunctionComponent<INavProps> = (props) => {
+  const items = props.site?.navigation?.main;
+  const isWhite = props.pageHeader?.color === 'white';
   const [scrolled, setScrolled] = React.useState(false);
 
   useScrollPosition(
@@ -82,8 +82,8 @@ const Nav: React.FunctionComponent<INavProps> = ({ items }) => {
       {render && (
         <div
           className={classNames(
-            'transform -translate-x-full transition-transform',
-            'fixed top-0 inset-0 z-50 flex flex-col items-center justify-center w-full h-full bg-blue-600 relativ',
+            'transform -translate-x-full transition-transform ',
+            'fixed top-0 inset-0 z-50 flex flex-col items-center justify-center w-full h-full bg-gray-600 relativ',
             { '-translate-x-0': animateIn }
           )}
         >
@@ -97,8 +97,9 @@ const Nav: React.FunctionComponent<INavProps> = ({ items }) => {
           {items &&
             items.map((item) => (
               <NavItem
-                key={item.slug}
+                key={item.key}
                 label={item.label}
+                labelEn={item.labelEn}
                 slug={item.slug}
                 items={item.items}
               />
@@ -106,12 +107,16 @@ const Nav: React.FunctionComponent<INavProps> = ({ items }) => {
         </div>
       )}
       <div
-        className={`fixed  top-0 left-0 right-0 flex items-center justify-between h-20 bg-opacity-80  px-app_side_small md:px-app_side transition-colors duration-500 ${
-          !scrolled ? 'bg-transparent text-black' : 'bg-green-600 text-white'
-        }`}
+        className={classNames(
+          'fixed z-50  top-0 left-0 right-0 flex items-center justify-between',
+          'h-20 bg-opacity-80  px-app_side_small md:px-app_side transition-colors duration-500',
+          { 'bg-transparent': !scrolled && !isWhite },
+          { 'bg-transparent text-white': !scrolled && isWhite },
+          { 'bg-main text-white': scrolled }
+        )}
       >
         <Link href="/" passHref>
-          <a>Logo</a>
+          <a className="text-3xl font-bold">Hanne Rønn</a>
         </Link>
 
         <div className="md:hidden">
@@ -126,8 +131,9 @@ const Nav: React.FunctionComponent<INavProps> = ({ items }) => {
           {items &&
             items.map((item) => (
               <NavItem
-                key={item.slug}
+                key={item.key}
                 label={item.label}
+                labelEn={item.labelEn}
                 slug={item.slug}
                 items={item.items}
               />

@@ -20,7 +20,35 @@ a:hover {
   @apply my-6;
 } */
 
+*{
+ 
+	font-family: Helvetica Neue,Helvetica,Arial,sans-serif; 
+
+}
 
 .menuPopup-content {
   @apply w-full h-full;
  }
+
+ .page-transition-enter {
+  opacity: 0;
+}
+.page-transition-enter-active {
+  opacity: 1;
+  transition: opacity 300ms;
+}
+.page-transition-exit {
+  opacity: 1;
+}
+.page-transition-exit-active {
+  opacity: 0;
+  transition: opacity 300ms;
+}
+
+.column-2 p {
+columns: 2;
+}
+
+.column-3 p {
+columns: 3;
+}

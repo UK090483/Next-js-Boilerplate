@@ -23,11 +23,11 @@ export default {
       title: 'Slug',
       validation: Rule => Rule.required()
     },
-    // {
-    //   name: 'pageHeader',
-    //   type: 'pageHeader',
-    //   title: 'Header'
-    // },
+    {
+      name: 'pageHeader',
+      type: 'pageHeader',
+      title: 'Header'
+    },
     {
       name: 'footer',
       description: 'if empty it will use the default Footer',

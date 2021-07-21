@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { AppColor } from 'types';
+
 import Button from '../../components/buttons/button';
 
 export const downloadPlugQuery = ` 
@@ -20,8 +22,8 @@ export type DownloadPlugResult = {
   label: string | null;
   imageSrc: string | null;
   fileSrc: string | null;
-  color: string | null;
-  bgColor: string | null;
+  color: AppColor | null;
+  bgColor: AppColor | null;
   position?: 'inline' | 'left' | 'right' | 'center';
 };
 

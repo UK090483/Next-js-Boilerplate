@@ -113,12 +113,13 @@ export default {
       }
     },
     { type: 'button', blockEditor: { render: Button } },
+    { type: 'spacer' },
     // { type: 'embed' },
     // { type: 'imagePlug' },
     // { type: 'seoHeader' },
     // { type: 'imageGalleryPlug' },
     // { type: 'innerSection' },
-    // { type: 'spacer' },
+     
     // { type: 'download' }
   ]
 }

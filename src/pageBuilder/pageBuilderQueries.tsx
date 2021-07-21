@@ -1,4 +1,5 @@
 /* eslint-disable import/no-cycle */
+import { heroBlockQuery, HeroBlogResult } from './Blocks/HeroBlock';
 import { richTextQuery, RichTextQueryResult } from './Blocks/RichText';
 import { sectionBlockQuery, SectionResult } from './Blocks/SectionBlock';
 import { ButtonPlugResult } from './Plugs/ButtonPlug';
@@ -20,6 +21,7 @@ content[]{
   ...,
   ${sectionBlockQuery},
   ${richTextQuery},
+  ${heroBlockQuery}
 },
 `;
 
@@ -34,4 +36,5 @@ export type PageBodyResult = (
   | InnerSectionPlugResult
   | SpacerPlugResult
   | DownloadPlugResult
+  | HeroBlogResult
 )[];

@@ -4,10 +4,12 @@ import React from 'react';
 import cx from 'classnames';
 import Link from 'next/link';
 
+import { AppColor } from 'types';
+
 interface ButtonProps {
   label: string;
-  color?: string;
-  backgroundColor?: string;
+  color?: AppColor;
+  backgroundColor?: AppColor;
   testid?: string;
   className?: string;
   size?: 's' | 'm' | 'l';
@@ -34,32 +36,27 @@ const Button: React.FC<LinkProps | ClickProps> = (props) => {
   } = props;
 
   const className = cx(
-    'button',
+    'border-2 inline-block font-bold transition-colors rounded-sm ',
     { 'mr-6': position === 'inline' },
     { 'block mb-2 w-fit-content': position === 'left' },
     { 'block ml-auto mb-2 w-fit-content': position === 'right' },
     { 'block mx-auto mb-2 w-fit-content': position === 'center' },
     { 'is-large': size === 'l' },
-    { 'is-medium': size === 'm' },
+    { 'px-6 py-4': size === 'm' },
     { 'is-small': size === 's' },
-    { 'text-frida-red border-frida-red hover:bg-frida-red': color === 'red' },
+
     {
-      'text-frida-green border-frida-green hover:bg-frida-green':
-        color === 'green',
+      'text-black border-black hover:bg-black ': color === 'black',
     },
+
     {
-      'text-frida-black border-frida-black hover:bg-frida-black':
-        color === 'black',
+      'text-white border-white hover:bg-white  hover:text-main':
+        color === 'white',
     },
-    {
-      'text-frida-pink border-frida-pink hover:bg-frida-pink': color === 'pink',
-    },
-    { 'text-frida-white hover:bg-frida-white': color === 'white' },
-    { 'hover:text-frida-red': backgroundColor === 'red' },
-    { 'hover:text-frida-black': backgroundColor === 'black' },
-    { 'hover:text-frida-pink': backgroundColor === 'pink' },
-    { 'hover:text-frida-white': backgroundColor === 'white' },
-    { 'hover:text-frida-grey': backgroundColor === 'grey' }
+
+    { 'hover:text-black': backgroundColor === 'black' },
+
+    { '': backgroundColor === 'white' }
   );
 
   if (props.type === 'link') {
@@ -81,7 +78,7 @@ const Button: React.FC<LinkProps | ClickProps> = (props) => {
         rel="noreferrer"
         target="_blank"
         style={{ cursor: 'none' }}
-        className={`${className} ${extraClasses}`}
+        className={` ${className} ${extraClasses}`}
         href={props.link}
       >
         {label}

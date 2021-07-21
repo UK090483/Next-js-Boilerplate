@@ -1,8 +1,9 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable import/no-cycle */
-// @ts-ignore
+
 import React from 'react';
 
-// eslint-disable-next-line import/no-extraneous-dependencies
+// @ts-ignore
 import BlockContent from '@sanity/block-content-to-react';
 
 import LinkMark, { linkMarkQuery } from '../marks/link';
@@ -39,15 +40,6 @@ export interface RichTextQueryResult extends PageBuilderBlockBase {
   content: any[];
 }
 
-const pink = (props: any) => {
-  return <span className="text-frida-pink">{props.children}</span>;
-};
-const white = (props: any) => {
-  return <span className="text-frida-white">{props.children}</span>;
-};
-const frida = (props: any) => {
-  return <Frida textColor={props.mark.color} text={props.children} />;
-};
 const link = (props: any) => {
   return <LinkMark {...props.mark}>{props.children}</LinkMark>;
 };
@@ -98,9 +90,6 @@ const serializer = {
     block: BlockRenderer,
   },
   marks: {
-    pink,
-    white,
-    frida,
     link,
   },
 };
@@ -108,10 +97,12 @@ const serializer = {
 const RichText = (props: any) => {
   const isBlock = props._type === 'block';
   return (
-    <BlockContent
-      blocks={isBlock ? props : props.content}
-      serializers={serializer}
-    />
+    <div className="prose prose-lg max-w-none">
+      <BlockContent
+        blocks={isBlock ? props : props.content}
+        serializers={serializer}
+      />
+    </div>
   );
 };
 

@@ -17,11 +17,28 @@ module.exports = {
       '6xl': '4rem',
     },
     extend: {
+      keyframes: {
+        'fade-in-down': {
+          '0%': {
+            opacity: '0',
+            transform: 'translateY(-10px)',
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'translateY(0)',
+          },
+        },
+      },
+      animation: {
+        'fade-in-down': 'fade-in-down 0.5s ease-out',
+      },
       spacing: {
         app_side: '30px',
         app_side_small: '20px',
       },
       colors: {
+        main: '#54699a',
+        secondary: '#059669',
         gray: {
           100: '#f7fafc',
           200: '#edf2f7',

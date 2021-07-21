@@ -5,6 +5,7 @@ import React from 'react';
 
 import type { AppLocations } from 'types';
 
+import HeroBlock from './Blocks/HeroBlock';
 import RichText from './Blocks/RichText';
 import SectionBlock from './Blocks/SectionBlock';
 import ComponentNotFound from './component_not_found';
@@ -13,6 +14,7 @@ import ButtonPlug from './Plugs/ButtonPlug';
 import EmbedPlug from './Plugs/EmbedPlug';
 import ImagePlug from './Plugs/ImagePlug';
 import SeoHeaderPlug from './Plugs/SeoHeader';
+import SpacerPlug from './Plugs/Spacer';
 
 type ContentParserProps = {
   content: PageBodyResult;
@@ -46,14 +48,16 @@ const BodyParser: React.FC<ContentParserProps> = (props) => {
               return <ImagePlug {...blok} key={blok._key} />;
             case 'seoHeader':
               return <SeoHeaderPlug {...blok} key={blok._key} />;
+            case 'hero':
+              return <HeroBlock lang={lang} {...blok} key={blok._key} />;
             // case 'quotes':
             //   return <Quotes {...blok} key={blok._key} />;
             // case 'imageGalleryPlug':
             //   return <ImageGalleryPlug {...blok} key={blok._key} />;
             // case 'innerSection':
             //   return <InnerSectionPlug {...blok} key={blok._key} />;
-            // case 'spacer':
-            //   return <SpacerPlug {...blok} key={blok._key} />;
+            case 'spacer':
+              return <SpacerPlug {...blok} key={blok._key} />;
             // case 'download':
             //   return <DownLoadPlug {...blok} key={blok._key} />;
 

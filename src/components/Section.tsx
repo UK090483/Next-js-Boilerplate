@@ -2,9 +2,11 @@ import React from 'react';
 
 import cx from 'classnames';
 
+import { AppColor } from 'types';
+
 type SectionProps = {
   type?: 'text' | 'full' | 'hero' | 'normal' | 'medium-wide' | null;
-  backgroundColor?: string;
+  backgroundColor?: AppColor;
   className?: string;
   bgImage?: any;
 };
@@ -12,7 +14,7 @@ type SectionProps = {
 const Section: React.FC<SectionProps> = (props) => {
   const {
     children,
-    backgroundColor = 'white',
+
     type = 'normal',
     className = '',
     // bgImage,
@@ -26,7 +28,6 @@ const Section: React.FC<SectionProps> = (props) => {
 
         className
       )}
-      data-color={backgroundColor}
     >
       <div
         className={cx(

@@ -6,7 +6,7 @@ import { AppLocations } from 'types';
 
 import { getAllDocPaths } from '../lib/fetchDocPath';
 import { handleStaticProps } from '../lib/handleStaticProps';
-import { usePreviewSubscription } from '../lib/sanity';
+import sanity from '../lib/sanity';
 import PageTemplate from '../pageTypes/page/Page';
 import { pageQuery, PageResult } from '../pageTypes/page/pageQueries';
 
@@ -23,7 +23,7 @@ const query = `*[_type == "page" && slug.current == $slug][0]{
 
 const Page: React.FC<PageProps> = (props) => {
   const { data, lang, slug, preview } = props;
-  const { data: pageData } = usePreviewSubscription(query, {
+  const { data: pageData } = sanity.usePreviewSubscription(query, {
     params: { slug },
     initialData: data,
     enabled: !!preview,

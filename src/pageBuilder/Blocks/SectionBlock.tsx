@@ -4,7 +4,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import { PageBuilderBlockBase } from '@src/pageBuilder/pageBuilderQueries';
-import { AppLocations, AppSizes } from 'types';
+import { AppColor, AppLocations, AppSizes } from 'types';
 
 import Section from '../../components/Section';
 import BodyParser from '../BodyParser';
@@ -24,7 +24,7 @@ _type == "section" => {
 export interface SectionResult extends PageBuilderBlockBase {
   _type: 'section';
   title: null | string;
-  bgColor: null | string;
+  bgColor: null | AppColor;
   type: null | 'text' | 'hero';
   topSpace: null | AppSizes;
   bottomSpace: null | AppSizes;
@@ -45,6 +45,7 @@ const SectionBlock: React.FC<SectionBlockProps> = (props) => {
   return (
     <Section
       className={classNames(
+        'column-2',
         { 'pt-10': topSpace === 's' },
         { 'pt-20': topSpace === 'm' },
         { 'pt-32': topSpace === 'l' },

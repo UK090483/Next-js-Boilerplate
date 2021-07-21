@@ -13,7 +13,7 @@ type AppProps<P = any> = {
 const MyApp = ({ Component, pageProps }: AppProps<PageProps>) => {
   const navData = pageProps.data.site.navigation.main;
   return (
-    <main className="mx-auto prose prose-2xl">
+    <main className="pt-20 mx-auto prose prose-2xl">
       <Nav items={navData} />
       <Component {...pageProps} />
     </main>

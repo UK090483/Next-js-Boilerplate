@@ -1,20 +1,21 @@
-import React from 'react'
-import classNames from 'classnames'
+import React from 'react';
+
+import classNames from 'classnames';
 
 export const seoHeaderPlugQuery = ` 
 _type == "spacer" => {
   _type,
  size,
 }
-`
+`;
 export type SpacerPlugResult = {
-  _type: 'spacer'
-  _key: string
-  size: 's' | 'm' | 'l' | 'xl' | 'xxl'
-}
+  _type: 'spacer';
+  _key: string;
+  size: 's' | 'm' | 'l' | 'xl' | 'xxl';
+};
 
 const SpacerPlug: React.FC<SpacerPlugResult> = (props) => {
-  const { size } = props
+  const { size } = props;
 
   return (
     <div
@@ -25,8 +26,8 @@ const SpacerPlug: React.FC<SpacerPlugResult> = (props) => {
         { 'pb-44': size === 'xl' },
         { 'pb-60': size === 'xxl' }
       )}
-    ></div>
-  )
-}
+    />
+  );
+};
 
-export default SpacerPlug
+export default SpacerPlug;

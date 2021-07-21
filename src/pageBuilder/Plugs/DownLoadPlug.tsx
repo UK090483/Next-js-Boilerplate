@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { FridaColors } from 'types';
-
 import Button from '../../components/buttons/button';
 
 export const downloadPlugQuery = ` 
@@ -22,8 +20,8 @@ export type DownloadPlugResult = {
   label: string | null;
   imageSrc: string | null;
   fileSrc: string | null;
-  color: FridaColors | null;
-  bgColor: FridaColors | null;
+  color: string | null;
+  bgColor: string | null;
   position?: 'inline' | 'left' | 'right' | 'center';
 };
 

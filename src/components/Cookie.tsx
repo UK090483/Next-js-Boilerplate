@@ -1,36 +1,16 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import React from 'react';
 
-import { useRouter } from 'next/router';
-
-const barAnim = {
-  show: {
-    y: '0%',
-    transition: {
-      duration: 0.6,
-      ease: [0.16, 1, 0.3, 1],
-    },
-  },
-  hide: {
-    y: '100%',
-    transition: {
-      duration: 0.6,
-      ease: [0.16, 1, 0.3, 1],
-    },
-  },
-};
-
 const CookieBar: React.FC = () => {
-  const { locale } = useRouter();
-  const message =
-    'Wir nutzen Cookies um Ihr Erlebnis auf unserer Website angenehm zu gestalten und steig zu verbessen!';
-  const message_en =
-    'We use cookies to make your experience on our website pleasant and to improve it!';
+  // const message =
+  //   'Wir nutzen Cookies um Ihr Erlebnis auf unserer Website angenehm zu gestalten und steig zu verbessen!';
+  // const message_en =
+  //   'We use cookies to make your experience on our website pleasant and to improve it!';
 
-  const hasMounted = useHasMounted();
+  // const hasMounted = useHasMounted();
   // const { accepted, declined, acceptCookies, declineCookies } = useCookie();
 
-  if (!hasMounted || !message) return null;
+  // if (!hasMounted || !message) return null;
 
   return (
     <div />

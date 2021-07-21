@@ -1,7 +1,10 @@
-import Photo from '@components/Photo'
-import { imageMeta, ImageMetaResult } from '@lib/queries/snippets'
-import classNames from 'classnames'
-import React from 'react'
+/* eslint-disable @typescript-eslint/naming-convention */
+import React from 'react';
+
+import classNames from 'classnames';
+
+import Photo from '@components/Photo';
+import { imageMeta, ImageMetaResult } from '@lib/queries/snippets';
 
 export const imageGalleryPlugQuery = ` 
 _type == "imageGalleryPlug" => {
@@ -14,22 +17,22 @@ _type == "imageGalleryPlug" => {
   ratio,
   
 }
-`
+`;
 
 export interface ImageGalleryPlugResult {
-  _type: 'imageGalleryPlug'
-  _key: string
-  items: ImageMetaResult[]
-  rows?: number
-  rows_mobile?: number
+  _type: 'imageGalleryPlug';
+  _key: string;
+  items: ImageMetaResult[];
+  rows?: number;
+  rows_mobile?: number;
 
-  ratio: '1:1' | '16:9' | '2:3' | '3:2'
+  ratio: '1:1' | '16:9' | '2:3' | '3:2';
 }
 
 const ImageGalleryPlug: React.FC<ImageGalleryPlugResult> = (props) => {
-  const { items, rows = 4, rows_mobile = 2, ratio = '1:1' } = props
+  const { items, rows = 4, rows_mobile = 2, ratio = '1:1' } = props;
 
-  if (!items || items.length < 1) return <div>No Images</div>
+  if (!items || items.length < 1) return <div>No Images</div>;
   return (
     <div
       className={classNames(
@@ -78,10 +81,10 @@ const ImageGalleryPlug: React.FC<ImageGalleryPlugResult> = (props) => {
               layout={photo.fill || 'contain'}
             />
           </div>
-        )
+        );
       })}
     </div>
-  )
-}
+  );
+};
 
-export default ImageGalleryPlug
+export default ImageGalleryPlug;

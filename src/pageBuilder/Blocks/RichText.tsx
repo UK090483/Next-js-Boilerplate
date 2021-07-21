@@ -2,6 +2,7 @@
 // @ts-ignore
 import React from 'react';
 
+// eslint-disable-next-line import/no-extraneous-dependencies
 import BlockContent from '@sanity/block-content-to-react';
 
 import LinkMark, { linkMarkQuery } from '../marks/link';

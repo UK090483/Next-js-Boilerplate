@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable no-underscore-dangle */
 import React from 'react';
 
 import classNames from 'classnames';
 
 import Photo from '@components/Photo';
 import { imageMeta, ImageMetaResult } from '@lib/queries/snippets';
-import { FridaSizes } from 'types';
 
 export const imagePlugQuery = ` 
 _type == "imagePlug" => {
@@ -19,8 +20,8 @@ _type == "imagePlug" => {
 export interface ImagePlugResult extends ImageMetaResult {
   _type: 'imagePlug';
   _key: string;
-  customWidth?: FridaSizes | null;
-  customHeight?: FridaSizes | null;
+  customWidth?: string | null;
+  customHeight?: string | null;
   layout?: 'fill' | 'contain';
 }
 

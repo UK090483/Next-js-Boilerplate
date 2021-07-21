@@ -47,21 +47,6 @@ const NI: React.FC<INavItemProps> = (props) => {
 
 const NavItem = React.memo(NI);
 
-const itemst = [
-  {
-    label: 'about',
-    slug: 'about',
-    items: [
-      { label: 'More', slug: 'more' },
-      { label: 'Home', slug: 'home' },
-      { label: 'Test', slug: 'test' },
-    ],
-  },
-  { label: 'More', slug: 'more' },
-  { label: 'Home', slug: 'home' },
-  { label: 'Test', slug: 'test' },
-];
-
 interface INavProps {
   items?: INavItemProps[];
 }
@@ -138,14 +123,15 @@ const Nav: React.FunctionComponent<INavProps> = ({ items }) => {
           />
         </div>
         <div className="hidden md:block">
-          {items.map((item) => (
-            <NavItem
-              key={item.slug}
-              label={item.label}
-              slug={item.slug}
-              items={item.items}
-            />
-          ))}
+          {items &&
+            items.map((item) => (
+              <NavItem
+                key={item.slug}
+                label={item.label}
+                slug={item.slug}
+                items={item.items}
+              />
+            ))}
         </div>
       </div>
     </>

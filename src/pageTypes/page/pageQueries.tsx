@@ -1,6 +1,8 @@
+import { groq } from 'next-sanity';
+
 import { body, PageBodyResult } from '../../pageBuilder/pageBuilderQueries';
 
-export const pageQuery = `
+export const pageQuery = groq`
 ...,
 type_,
 'slug':slug.current,

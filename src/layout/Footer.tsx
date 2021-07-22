@@ -14,17 +14,19 @@ const Footer: React.FunctionComponent<IFooterProps> = (props) => {
       <Section type="text">
         <div className="flex flex-wrap py-24 md:flex-nowrap">
           <div className="w-full ">
-            <p>Kontakt</p>
-            <div className="flex items-center">
-              <Icon size="s" icon="phone" />
+            <p className="pb-6 font-bold">Kontakt</p>
+            <div className="flex items-center pb-6">
+              <Icon size="s" icon="phone" className="mr-6" />
               {config?.kontaktTel || ' '}
             </div>
 
-            <div className="flex items-center">
-              <Icon size="s" icon="email" /> {config?.kontaktMail || ' '}
+            <div className="flex items-center pb-6">
+              <Icon size="s" icon="email" className="mr-6" />{' '}
+              {config?.kontaktMail || ' '}
             </div>
-            <div className="flex items-center whitespace-pre">
-              <Icon size="s" icon="email" /> {config?.kontaktAdress || ' '}
+            <div className="flex items-center pb-6 whitespace-pre">
+              <Icon size="s" icon="map" className="mr-6" />{' '}
+              {config?.kontaktAdress || ' '}
             </div>
           </div>
           <div className="w-full">
@@ -32,12 +34,11 @@ const Footer: React.FunctionComponent<IFooterProps> = (props) => {
           </div>
         </div>
       </Section>
-      <div className="pb-6 text-center whitespace-pre">
-        <p>© 2018 {config?.url || ' '} All rights reserved.</p>
-        <p>CVR: 39251884</p>
-      </div>
 
-      <Section />
+      <Section className="pb-6 text-center ">
+        © 2018 {config?.url || ' '} All rights reserved.
+        <p>CVR: 39251884</p>
+      </Section>
     </div>
   );
 };

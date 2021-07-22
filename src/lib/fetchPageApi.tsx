@@ -15,11 +15,18 @@ export const fetchPage = async (
   }
 
   let pageData;
+
   if (process.env.NODE_ENV === 'development' && !preview) {
     pageData = await getSanityClient({
       active: !!preview,
       token: previewData?.token,
     }).fetch(query, {
+      slug,
+    });
+  }
+
+  if (process.env.NODE_ENV === 'production') {
+    pageData = await getSanityClient().fetch(query, {
       slug,
     });
   }

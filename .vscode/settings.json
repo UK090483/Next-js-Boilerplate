@@ -51,5 +51,5 @@
     ".env.local": true
   },
   "explorerExclude.backup": null,
-  "cSpell.words": ["groq"]
+  "cSpell.words": ["camelcase", "groq"]
 }

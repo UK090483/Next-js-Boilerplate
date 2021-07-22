@@ -8,9 +8,10 @@ import { AppProps as NextAppProps } from 'next/app';
 
 import '../styles/main.css';
 import Footer from '@src/layout/Footer';
+import { Meta } from '@src/layout/Meta';
 import { PageProps } from '@src/pageTypes/page/Page';
 
-import Nav from '../layout/Nav';
+import Nav from '../layout/Nav/Nav';
 
 type AppProps<P = any> = {
   pageProps: P;
@@ -18,8 +19,9 @@ type AppProps<P = any> = {
 
 const MyApp = ({ Component, pageProps }: AppProps<PageProps>) => {
   return (
-    <main>
+    <main className="mx-auto bg-white max-w-app_max_width">
       <Nav {...pageProps.data} />
+      <Meta {...pageProps.data} />
       <PageTransition timeout={300} classNames="page-transition">
         <Component {...pageProps} />
       </PageTransition>

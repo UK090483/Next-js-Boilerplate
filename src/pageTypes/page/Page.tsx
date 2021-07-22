@@ -16,11 +16,11 @@ const Page: React.FC<PageProps> = (props) => {
   // const title = props.lang === 'en' && title_en ? title_en : props.data.title;
 
   return (
-    <>
+    <div className="min-h-screen">
       <BodyParser lang={props.lang} content={props.data.content} />
 
       {/* <CookieBar /> */}
-    </>
+    </div>
   );
 };
 

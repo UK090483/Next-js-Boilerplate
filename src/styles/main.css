@@ -1,29 +1,14 @@
 @tailwind base;
-
-/* a {
-  @apply text-blue-700;
-}
-
-a:hover {
-  @apply border-b-2 border-blue-700;
-} */
-
 @tailwind components;
-
 @tailwind utilities;
 
-/* .content p {
-  @apply my-6;
+
+h1,h2,h3,h4{
+ font-family:  'EB Garamond',Helvetica,Arial,sans-serif;  
+  /* font-family:  Montserrat,Helvetica,Arial,sans-serif;  */
 }
-
-.content ul {
-  @apply my-6;
-} */
-
-*{
- 
-	font-family: Helvetica Neue,Helvetica,Arial,sans-serif; 
-
+p{
+  font-family:  Montserrat,Helvetica,Arial,sans-serif; 
 }
 
 .menuPopup-content {
@@ -46,9 +31,111 @@ a:hover {
 }
 
 .column-2 p {
-columns: 2;
+/* columns: 2; */
 }
 
 .column-3 p {
 columns: 3;
+}
+
+/*! Typebase.less v0.1.0 | MIT License */
+/* Setup */
+html {
+  /* Change default typefaces here */
+  font-family:  Montserrat,Helvetica,Arial,sans-serif; 
+  /* font-size: 137.5%; */
+  -webkit-font-smoothing: antialiased;
+
+  @apply text-black;
+}
+/* Copy & Lists */
+p {
+  @apply text-base;
+  line-height: 1.5em;
+  margin-top: 1em;
+  margin-bottom: 0;
+}
+ul,
+ol {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+ul li,
+ol li {
+  line-height: 1.5rem;
+}
+ul ul,
+ol ul,
+ul ol,
+ol ol {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+blockquote {
+  line-height: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+ 
+  font-family:  Montserrat,Helvetica,Arial,sans-serif; 
+  @apply font-bold break-words;
+  margin-top: 1.5rem;
+  margin-bottom: 0;
+  line-height: 1.5rem;
+}
+h1 {
+  @apply text-4xl;
+ 
+  line-height: 4.5rem;
+  margin-top: 3rem;
+}
+h2 {
+  @apply text-3xl;
+ 
+  line-height: 3rem;
+  margin-top: 3rem;
+}
+h3 {
+  @apply text-2xl;
+  
+}
+h4 {
+  @apply text-xl;
+ 
+}
+h5 {
+  font-size: 0.4713333333333333rem;
+}
+h6 {
+  font-size: 0.3535rem;
+}
+/* Tables */
+table {
+  margin-top: 1.5rem;
+  border-spacing: 0px;
+  border-collapse: collapse;
+}
+table td,
+table th {
+  padding: 0;
+  line-height: 33px;
+}
+/* Code blocks */
+code {
+  vertical-align: bottom;
+}
+/* Leading paragraph text */
+.lead {
+  font-size: 1.414rem;
+}
+/* Hug the block above you */
+.hug {
+  margin-top: 0;
 }

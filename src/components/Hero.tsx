@@ -1,29 +1,36 @@
 import * as React from 'react';
 
-import { ImageMetaResult } from '@lib/queries/snippets';
+import classNames from 'classnames';
+
+import type { HeroBlockProps } from '@src/pageBuilder/Blocks/HeroBlock';
 
 import Button from './buttons/button';
 import Photo from './Photo';
 
-interface IHeroProps {
-  photo?: ImageMetaResult;
-}
-
-const Hero: React.FunctionComponent<IHeroProps> = (props) => {
-  const { photo } = props;
+const Hero: React.FunctionComponent<HeroBlockProps> = (props) => {
+  const { photo, text, title, btnText, size } = props;
 
   return (
-    <div className="relative w-full h-screen">
+    <div
+      className={classNames(
+        'relative w-full ',
+        {
+          'h-screen': size === 'full' || !size,
+        },
+        { 'h-[50vh]': size === '1/2' },
+        { 'h-[33vh]': size === '1/3' },
+        { 'h-[66vh]': size === '2/3' }
+      )}
+    >
       <Photo photo={photo} layout="fill" />
-      <div className="absolute top-0 bottom-0 flex items-end justify-center w-2/5 pl-48 bg-opacity-0 bg-main ">
-        <div className="px-12 pb-56 text-white">
-          <h1 className="text-5xl font-bold">Hanne Rønn</h1>
-          <p className="pb-8 text-lg text-gray-200">
-            Gennem psykoterapi hjælper jeg dig med at skabe et bedre forhold til
-            dig selv, din partner, familie og andre vigtige personer i dit liv.
-          </p>
+      <div className="absolute top-0 bottom-0 flex items-end justify-center w-full bg-white bg-opacity-0 md:w-2/5 ">
+        <div className="px-12 text-white pb-28">
+          {title && <h1 className="text-3xl">{title}</h1>}
+          {text && <p className="pb-8 pr-20 text-lg opacity-50">{text}</p>}
 
-          <Button color="white" label="LÆS MERE" type="link" link="/" />
+          {btnText && (
+            <Button color="white" label={btnText} type="link" link="/" />
+          )}
         </div>
       </div>
     </div>

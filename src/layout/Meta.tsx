@@ -1,14 +1,9 @@
-import { NextSeo } from 'next-seo';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
-import { AppConfig } from '../utils/AppConfig';
+import { PageResult } from '@src/pageTypes/page/pageQueries';
 
-type IMetaProps = {
-  title: string;
-  description: string;
-  canonical?: string;
-};
+interface IMetaProps extends PageResult {}
 
 const Meta = (props: IMetaProps) => {
   const router = useRouter();
@@ -17,6 +12,8 @@ const Meta = (props: IMetaProps) => {
     <>
       <Head>
         <meta charSet="UTF-8" key="charset" />
+        <title>page title</title>
+
         <meta
           name="viewport"
           content="width=device-width,initial-scale=1"
@@ -47,7 +44,7 @@ const Meta = (props: IMetaProps) => {
           key="favicon"
         />
       </Head>
-      <NextSeo
+      {/* <NextSeo
         title={props.title}
         description={props.description}
         canonical={props.canonical}
@@ -58,7 +55,7 @@ const Meta = (props: IMetaProps) => {
           locale: AppConfig.locale,
           site_name: AppConfig.site_name,
         }}
-      />
+      /> */}
     </>
   );
 };

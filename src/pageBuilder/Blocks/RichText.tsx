@@ -95,14 +95,15 @@ const serializer = {
 };
 
 const RichText = (props: any) => {
+  // eslint-disable-next-line no-underscore-dangle
   const isBlock = props._type === 'block';
   return (
-    <div className="prose prose-lg max-w-none">
-      <BlockContent
-        blocks={isBlock ? props : props.content}
-        serializers={serializer}
-      />
-    </div>
+    // <div className="prose prose-xl max-w-none">
+    <BlockContent
+      blocks={isBlock ? props : props.content}
+      serializers={serializer}
+    />
+    // </div>
   );
 };
 

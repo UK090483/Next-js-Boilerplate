@@ -26,7 +26,7 @@ export const getAllDocPaths = async (doc: string) => {
             params: {
               slug: slugs,
             },
-            locale: 'dk',
+            locale: 'da-Dk',
           },
           {
             params: {

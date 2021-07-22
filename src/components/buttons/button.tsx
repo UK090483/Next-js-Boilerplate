@@ -59,6 +59,14 @@ const Button: React.FC<LinkProps | ClickProps> = (props) => {
     { '': backgroundColor === 'white' }
   );
 
+  // return (
+  //   <div className="text-5xl font-extrabold">
+  //     <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500">
+  //       Hello world
+  //     </span>
+  //   </div>
+  // );
+
   if (props.type === 'link') {
     return (
       <Link href={props.link} passHref>

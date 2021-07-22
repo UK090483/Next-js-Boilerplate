@@ -139,3 +139,22 @@ code {
 .hug {
   margin-top: 0;
 }
+
+.customUnderline{
+  @apply relative;
+}
+.customUnderline::after {
+  @apply absolute bottom-0 left-0 w-full ;
+  content: '';
+  border-bottom: solid 0.2em currentColor;
+  opacity: 0;
+  
+  transition: opacity 300ms, transform 300ms;
+}
+
+.customUnderline:hover::after,
+.customUnderline:focus::after,
+.customUnderline.customUnderline--active::after {
+  opacity: 1;
+  transform: translate3d(0, -0.2em, 0) ;
+}

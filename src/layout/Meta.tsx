@@ -5,7 +5,7 @@ import { PageResult } from '@src/pageTypes/page/pageQueries';
 
 interface IMetaProps extends PageResult {}
 
-const Meta = (props: IMetaProps) => {
+const Meta: React.FC<IMetaProps> = () => {
   const router = useRouter();
 
   return (

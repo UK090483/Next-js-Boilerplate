@@ -45,7 +45,7 @@
     "next-env.d.ts": true,
     "package-lock.json": true,
     "package.json": true,
-    ".vscode": true,
+    ".vscode": false,
     "next.config.js": false,
     "**/package.json": true,
     ".env.local": true

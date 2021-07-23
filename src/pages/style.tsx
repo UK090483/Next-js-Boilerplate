@@ -5,7 +5,7 @@ import Section from '@components/Section';
 const Style: React.FC = () => {
   return (
     <Section>
-      <div className="pt-36">
+      {/* <div className="pt-36">
         <p>
           Also, here's another paragraph. An mass system spawned an feedback
           active theory vector developer extension line. Serial transaction
@@ -225,7 +225,7 @@ const Style: React.FC = () => {
           brokerage gentlemen travel. Is the best silver salon cocktail upper.
           Rich tailored is the best using handmade.
         </p>
-      </div>
+      </div> */}
     </Section>
   );
 };

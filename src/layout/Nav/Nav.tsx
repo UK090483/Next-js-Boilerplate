@@ -18,9 +18,11 @@ const Nav: React.FunctionComponent<INavProps> = (props) => {
   const isWhite = props.pageHeader?.color === 'white';
   const [scrolled, setScrolled] = React.useState(false);
 
+  const showLogo = !props.pageHeader?.withOutLogo || scrolled;
+
   useScrollPosition(
     ({ currPos }) => {
-      const isShow = currPos.y < -200;
+      const isShow = currPos.y < -600;
       if (isShow !== scrolled) setScrolled(isShow);
     },
     [scrolled]
@@ -33,11 +35,15 @@ const Nav: React.FunctionComponent<INavProps> = (props) => {
       <NavOverlay items={items} />
 
       <NavBar isWhite={isWhite}>
-        <Link href="/" passHref>
-          <a className="text-2xl font-bold md:text-3xl whitespace-nowrap">
-            Hanne Rønn
-          </a>
-        </Link>
+        {showLogo ? (
+          <Link href="/" passHref>
+            <a className="text-2xl font-bold md:text-3xl whitespace-nowrap">
+              Hanne Rønn
+            </a>
+          </Link>
+        ) : (
+          <div />
+        )}
 
         <div className="lg:hidden">
           <Icon

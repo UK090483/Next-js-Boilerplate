@@ -16,6 +16,8 @@ _type == "hero" => {
  text,
  btnText,
  btnLink,
+ filterIntensity,
+ filterColor,
  size
 }
 `;
@@ -27,6 +29,18 @@ export interface HeroBlogResult extends PageBuilderBlockBase {
   text?: string;
   btnText?: string;
   btnLink?: string;
+  filterIntensity?:
+    | '0'
+    | '10'
+    | '20'
+    | '30'
+    | '40'
+    | '50'
+    | '60'
+    | '70'
+    | '80'
+    | '90';
+  filterColor?: 'white' | 'black';
   size?: 'full' | '1/2' | '2/3' | '1/3';
 }
 

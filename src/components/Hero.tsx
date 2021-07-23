@@ -37,7 +37,15 @@ const item: AnimationProps['variants'] = {
 };
 
 const Hero: React.FunctionComponent<HeroBlockProps> = (props) => {
-  const { photo, text, title, btnText, size } = props;
+  const {
+    photo,
+    text,
+    title,
+    btnText,
+    size,
+    filterColor = 'white',
+    filterIntensity = '0',
+  } = props;
 
   return (
     <div
@@ -51,17 +59,39 @@ const Hero: React.FunctionComponent<HeroBlockProps> = (props) => {
         { 'h-[66vh]': size === '2/3' }
       )}
     >
-      <Photo photo={photo} layout="fill" />
+      <Photo photo={photo} layout="fill" maxWidth={1600} />
+      {filterIntensity !== '0' && (
+        <div
+          className={classNames(
+            'absolute inset-0  ',
+            { 'bg-white': filterColor === 'white' },
+            { 'bg-black': filterColor === 'black' },
+            { 'bg-opacity-10': filterIntensity === '10' },
+            { 'bg-opacity-20': filterIntensity === '20' },
+            { 'bg-opacity-30': filterIntensity === '30' },
+            { 'bg-opacity-40': filterIntensity === '40' },
+            { 'bg-opacity-50': filterIntensity === '50' },
+            { 'bg-opacity-60': filterIntensity === '60' },
+            { 'bg-opacity-70': filterIntensity === '70' },
+            { 'bg-opacity-80': filterIntensity === '80' },
+            { 'bg-opacity-90': filterIntensity === '90' }
+          )}
+        />
+      )}
 
       <motion.div
         initial="hidden"
         animate="visible"
         variants={list}
-        className="absolute bottom-[20%] left-0  md:left-[15vw] w-full max-w-lg p-12 text-white bg-black md:bg-transparent bg-opacity-30"
+        className={classNames(
+          'absolute top-10 left-0 w-full p-app_side_small md:top-32 md:left-32 text-white bg-opacity-30 max-w-xl',
+          'lg:top-auto lg:bottom-[20%] lg:left-[10vw] lg:max-w-lg lg:p-2 lg:bg-transparent'
+        )}
       >
         {title && (
-          <motion.h1 variants={item} className="text-3xl">
-            {title}
+          <motion.h1 className="mt-0" variants={item}>
+            {' '}
+            {title}{' '}
           </motion.h1>
         )}
         {text && (

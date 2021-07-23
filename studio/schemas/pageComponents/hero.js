@@ -29,19 +29,36 @@ export default {
       type: "figure",
     },
     {
-      title: 'Size',
-      name: 'size',
-      type: 'string',
+      title: "Size",
+      name: "size",
+      type: "string",
       options: {
         list: [
-          { title: 'full', value: 'full' },
-          { title: '1/2', value: '1/2' },
-          { title: '1/3', value: '1/3' },
-          { title: '2/3', value: '2/3' },
-         
-        ]
+          { title: "full", value: "full" },
+          { title: "1/2", value: "1/2" },
+          { title: "1/3", value: "1/3" },
+          { title: "2/3", value: "2/3" },
+        ],
       },
-      initialValue: 'full'
+      initialValue: "1/3",
+    },
+    {
+      title: "Filter intensity",
+      name: "filterIntensity",
+      type: "string",
+      options: {
+        list: ['0', '10', '20', '30', '40', '50', '60', '70', '80', '90'],
+      },
+      initialValue: "0",
+    },
+    {
+      title: "Filter Color",
+      name: "filterColor",
+      type: "string",
+      options: {
+        list: ['white', 'black'],
+      },
+      initialValue: "white",
     },
   ],
   preview: {

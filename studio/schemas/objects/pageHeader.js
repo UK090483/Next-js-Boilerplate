@@ -18,11 +18,11 @@ export default {
         layout: "radio",
       },
     },
-    // {
-    //   title: "PageTitle without Home Link",
-    //   name: "withOutHomeLink",
-    //   type: "boolean",
-    // },
+    {
+      title: "PageTitle without Logo",
+      name: "withOutLogo",
+      type: "boolean",
+    },
     // {
     //   title: "Hide Menu",
     //   name: "hideMenu",

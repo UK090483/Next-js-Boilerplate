@@ -29,7 +29,7 @@ export type NavigationItem = {
   label: string;
   labelEn: string;
   slug: string;
-  items: Omit<NavigationItem, 'items'>[];
+  items: Omit<NavigationItem, 'items'>[] | null;
 };
 
 export type SiteResult = {

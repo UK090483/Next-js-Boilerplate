@@ -48,7 +48,7 @@
     ".vscode": false,
     "next.config.js": false,
     "**/package.json": true,
-    ".env.local": true
+    ".env.local": false
   },
   "explorerExclude.backup": null,
   "cSpell.words": ["camelcase", "groq"]

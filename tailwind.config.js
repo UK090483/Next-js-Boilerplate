@@ -2,22 +2,42 @@
 /* eslint-disable global-require */
 const app_max_width = '2552px';
 
+const fontSizes = {
+  xs: 0.75,
+  sm: 0.875,
+  base: 1.5,
+  lg: 1.125,
+  xl: 1.35,
+  '2xl': 1.814,
+  '3xl': 2.828,
+  '4xl': 4.242,
+  '5xl': 3,
+  '6xl': 4,
+};
+const getSizes = () => {
+  return Object.entries(fontSizes).reduce((acc, [name, multiplier]) => {
+    return {
+      ...acc,
+      [name]: `${multiplier}rem`,
+      [`m${name}`]: `${multiplier * 0.75}rem`,
+    };
+  }, {});
+};
+
 module.exports = {
   mode: 'jit',
   purge: ['./src/**/*.{js,ts,jsx,tsx}'],
   darkMode: false,
   theme: {
+    screens: {
+      sm: '640px',
+      md: '768px',
+      lg: '1025px',
+      xl: '1280px',
+      '2xl': '1536px',
+    },
     fontSize: {
-      xs: '0.75rem',
-      sm: '0.875rem',
-      base: '1.5rem',
-      lg: '1.125rem',
-      xl: '1.25rem',
-      '2xl': '1.414rem',
-      '3xl': ' 2.828rem',
-      '4xl': '4.242rem',
-      '5xl': '3rem',
-      '6xl': '4rem',
+      ...getSizes(),
     },
     extend: {
       maxWidth: {

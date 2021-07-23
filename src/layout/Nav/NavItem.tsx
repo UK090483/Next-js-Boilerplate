@@ -5,6 +5,7 @@ import * as React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Popup from 'reactjs-popup';
+import { PopupActions } from 'reactjs-popup/dist/types';
 
 import { NavigationItem } from '@lib/queries/siteQuery';
 import { useMenu } from '@lib/store';
@@ -16,13 +17,22 @@ interface NavItemProps extends NavigationItem {
 const NavItem: React.FC<NavItemProps> = (props) => {
   const { items, label, slug, className: extraClassNames } = props;
   const { asPath } = useRouter();
-  const isActive = asPath === `/${slug}/`;
+  const isActive = slug
+    ? asPath === `/${slug}/`
+    : !!(items && items.find((i) => `/${i.slug}/` === asPath));
+
   const { isOpen, toggle } = useMenu();
+  const ref = React.useRef<PopupActions | null>();
+
   const closeIfOpen = () => {
     if (isOpen) {
       toggle();
     }
+    if (ref.current) {
+      ref.current.close();
+    }
   };
+
   const underlineClass = `customUnderline ${
     isActive ? 'customUnderline--active' : ''
   }`;
@@ -40,25 +50,31 @@ const NavItem: React.FC<NavItemProps> = (props) => {
   }
   return (
     <Popup
+      ref={ref as React.Ref<PopupActions> | undefined}
       trigger={
-        <button id="testId" className={className} type="button">
+        <button className={`${underlineClass} ${className}`} type="button">
           {label}
         </button>
       }
       position="bottom center"
-      on={['hover', 'focus', 'click']}
+      on={['click', 'hover']}
     >
       <div className="flex flex-col bg-white rounded-sm">
-        {items.map((i) => (
-          <Link key={i.key} href={`/${i.slug || ''}`} passHref>
-            <a
-              onClick={closeIfOpen}
-              className={`py-6 mx-3 ${underlineClass} ${className}`}
-            >
-              {i.label}
-            </a>
-          </Link>
-        ))}
+        {items.map((i) => {
+          const active = asPath === `/${i.slug}/`;
+          return (
+            <Link key={i.key} href={`/${i.slug || ''}`} passHref>
+              <a
+                onClick={closeIfOpen}
+                className={`py-6 mx-3 customUnderline ${
+                  active ? 'customUnderline--active' : ''
+                } ${className}`}
+              >
+                {i.label}
+              </a>
+            </Link>
+          );
+        })}
       </div>
     </Popup>
   );

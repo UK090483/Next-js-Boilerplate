@@ -12,7 +12,7 @@ type_,
 'slug':slug.current,
 footer->{${body}},
 ${body}
-'pageHeader':pageHeader{color},
+'pageHeader':pageHeader{color,withOutLogo},
 'site':${siteQuery}
 `;
 
@@ -23,6 +23,6 @@ export type PageResult = {
   title_en?: string;
   slug: null | string;
   footer?: PageBodyResult;
-  pageHeader?: { color?: 'white' | 'black' };
+  pageHeader?: { color?: 'white' | 'black'; withOutLogo?: boolean };
   site: SiteResult;
 };

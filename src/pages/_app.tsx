@@ -7,6 +7,7 @@ import { PageTransition } from 'next-page-transitions';
 import { AppProps as NextAppProps } from 'next/app';
 
 import '../styles/main.css';
+import PreviewIndicator from '@lib/PreviewIndicator';
 import Footer from '@src/layout/Footer';
 import { Meta } from '@src/layout/Meta';
 import { PageProps } from '@src/pageTypes/page/Page';
@@ -20,12 +21,13 @@ type AppProps<P = any> = {
 const MyApp = ({ Component, pageProps }: AppProps<PageProps>) => {
   return (
     <main className="mx-auto bg-white max-w-app_max_width">
-      <Nav {...pageProps.data} />
+      {!pageProps.preview && <Nav {...pageProps.data} />}
       <Meta {...pageProps.data} />
       <PageTransition timeout={300} classNames="page-transition">
         <Component {...pageProps} />
       </PageTransition>
       <Footer {...pageProps.data} />
+      {pageProps.preview && <PreviewIndicator />}
     </main>
   );
 };

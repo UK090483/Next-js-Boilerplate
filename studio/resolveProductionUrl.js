@@ -2,7 +2,7 @@
 
 const localUrl ='http://localhost:3000/api/preview?token=HULL'
 
-const liveUrl='https://frida-next.vercel.app/api/preview?token=HULL'
+const liveUrl='https://hanne-roenn.vercel.app/api/preview?token=HULL'
 
 const url= process.env.NODE_ENV === 'development'? localUrl:liveUrl
 export default function resolveProductionUrl(document) {

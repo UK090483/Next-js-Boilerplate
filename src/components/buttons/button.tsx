@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 
@@ -36,7 +38,7 @@ const Button: React.FC<LinkProps | ClickProps> = (props) => {
   } = props;
 
   const className = cx(
-    'border-2 inline-block font-bold transition-colors rounded-sm ',
+    'border-2 inline-block text-lg font-bold transition-colors rounded-sm ',
     { 'mr-6': position === 'inline' },
     { 'block mb-2 w-fit-content': position === 'left' },
     { 'block ml-auto mb-2 w-fit-content': position === 'right' },
@@ -60,11 +62,30 @@ const Button: React.FC<LinkProps | ClickProps> = (props) => {
   );
 
   if (props.type === 'link') {
+    const isHash = props.link && props.link.includes('#');
+    const handleScroll = () => {
+      const urlObject = new URL(props.link);
+      const element = document.querySelector(urlObject.hash);
+      if (element) {
+        element.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+          inline: 'nearest',
+        });
+      }
+    };
+
     return (
       <Link href={props.link} passHref>
         <a
           {...(props.download === true ? { download: true } : {})}
           className={` ${className} ${extraClasses}`}
+          onClick={(e) => {
+            if (isHash) {
+              e.preventDefault();
+              handleScroll();
+            }
+          }}
         >
           {label}
         </a>

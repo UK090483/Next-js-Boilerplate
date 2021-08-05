@@ -34,5 +34,6 @@ module.exports = withBundleAnalyzer({
   i18n: {
     locales: ['da-Dk', 'en'],
     defaultLocale: 'da-Dk',
+    localeDetection: false,
   },
 });

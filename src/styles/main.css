@@ -45,9 +45,13 @@ columns: 3;
 /*! Typebase.less v0.1.0 | MIT License */
 /* Setup */
 html {
-  /* Change default typefaces here */
+  
   font-family:  Montserrat,Helvetica,Arial,sans-serif; 
-  /* font-size: 137.5%; */
+   /* font-size: 137.5%;  */
+   /* -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%; */
+
+  
   -webkit-font-smoothing: antialiased;
 
   @apply text-black;

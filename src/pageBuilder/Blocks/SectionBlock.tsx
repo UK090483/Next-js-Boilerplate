@@ -37,13 +37,23 @@ interface SectionBlockProps extends SectionResult {
 }
 
 const SectionBlock: React.FC<SectionBlockProps> = (props) => {
-  const { type, bgColor, content, bottomSpace, topSpace, lang, contentEn } =
-    props;
+  const {
+    type,
+    bgColor,
+    content,
+    bottomSpace,
+    topSpace,
+    lang,
+    contentEn,
+    title,
+  } = props;
 
   const preparedContent = lang === 'en' && contentEn ? contentEn : content;
 
   return (
     <Section
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...(title ? { id: title } : {})}
       className={classNames(
         'column-2',
         { 'pt-5 md:pt-10': topSpace === 's' },

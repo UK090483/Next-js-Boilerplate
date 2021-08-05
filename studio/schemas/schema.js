@@ -35,12 +35,16 @@ import hero from './pageComponents/hero'
 
 import settingsConfig from './documents/settings-config'
 
+import blogPost from './documents/blogPost'
+import blogPostCategory from './documents/blogPostCategory';
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
   // We name our schema
   name: 'default',
   // Then 
   types: schemaTypes.concat([
+    blogPost,
+    blogPostCategory,
     pageHeader,
     spacer,
     navigation,
@@ -52,7 +56,7 @@ export default createSchema({
     settingsConfig,
     seo,
     footer,
-    post,
+    // post,
     redirect,
     category,
     blockContent,

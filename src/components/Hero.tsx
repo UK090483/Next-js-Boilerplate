@@ -42,6 +42,7 @@ const Hero: React.FunctionComponent<HeroBlockProps> = (props) => {
     text,
     title,
     btnText,
+    btnLink,
     size,
     filterColor = 'white',
     filterIntensity = '0',
@@ -102,7 +103,12 @@ const Hero: React.FunctionComponent<HeroBlockProps> = (props) => {
 
         {btnText && (
           <motion.div variants={item}>
-            <Button color="white" label={btnText} type="link" link="/" />
+            <Button
+              color="white"
+              label={btnText}
+              type="link"
+              link={btnLink || '/'}
+            />
           </motion.div>
         )}
       </motion.div>

@@ -2,12 +2,12 @@ import S from '@sanity/desk-tool/structure-builder'
 import { FaRegListAlt } from 'react-icons/fa'
 import EditIcon from 'part:@sanity/base/edit-icon'
 import EyeIcon from 'part:@sanity/base/eye-icon'
-import SeoPreview from '../../components/previews/seo/seo-preview'
-import IframePreview from '../../components/iframe/IframePreview'
-import { localURL, remoteURL } from '../../constants'
+// import SeoPreview from '../../components/previews/seo/seo-preview'
+// import IframePreview from '../../components/iframe/IframePreview'
+// import { localURL, remoteURL } from '../../constants'
 
-const previewURL =
-  window.location.hostname === 'localhost' ? localURL : remoteURL
+// const previewURL =
+//   window.location.hostname === 'localhost' ? localURL : remoteURL
 export default S.listItem()
   .title('Blog')
   .icon(FaRegListAlt)
@@ -25,7 +25,6 @@ export default S.listItem()
                 S.document()
                   .documentId(documentId)
                   .schemaType('postCategory')
-                  .views([S.view.form().icon(EditIcon)])
               )
           ),
 
@@ -40,13 +39,7 @@ export default S.listItem()
                   .documentId(documentId)
                   .schemaType('post')
                   .views([
-                    S.view.form().icon(EditIcon),
-                   
-                    S.view
-                      .component(SeoPreview)
-                      .options({ previewURL })
-                      .title('Seo Preview')
-                      .icon(EyeIcon)
+                    S.view.form().icon(EditIcon),            
                   ])
               )
           )

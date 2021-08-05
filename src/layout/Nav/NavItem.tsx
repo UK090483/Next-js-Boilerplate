@@ -37,7 +37,7 @@ const NavItem: React.FC<NavItemProps> = (props) => {
     isActive ? 'customUnderline--active' : ''
   }`;
 
-  const className = `px-6 py-3 text-xl  ${extraClassNames || ''}`;
+  const className = `px-6 py-3 text-lg font-semibold ${extraClassNames || ''}`;
 
   if (!items) {
     return (
@@ -59,15 +59,15 @@ const NavItem: React.FC<NavItemProps> = (props) => {
       position="bottom center"
       on={['click', 'hover']}
     >
-      <div className="flex flex-col bg-white rounded-sm">
+      <div className="flex flex-col bg-white rounded-lg">
         {items.map((i) => {
           const active = asPath === `/${i.slug}/`;
           return (
             <Link key={i.key} href={`/${i.slug || ''}`} passHref>
               <a
                 onClick={closeIfOpen}
-                className={`py-6 mx-3 customUnderline ${
-                  active ? 'customUnderline--active' : ''
+                className={`py-6 text-lg hover:bg-black hover:text-white transition-colors ${
+                  active ? 'bg-black text-white' : 'bg-white text-black'
                 } ${className}`}
               >
                 {i.label}

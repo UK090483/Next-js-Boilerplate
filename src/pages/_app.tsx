@@ -7,6 +7,7 @@ import { PageTransition } from 'next-page-transitions';
 import { AppProps as NextAppProps } from 'next/app';
 
 import '../styles/main.css';
+
 import PreviewIndicator from '@lib/PreviewIndicator';
 import Footer from '@src/layout/Footer';
 import { Meta } from '@src/layout/Meta';

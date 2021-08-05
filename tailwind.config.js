@@ -14,12 +14,13 @@ const fontSizes = {
   '5xl': 3,
   '6xl': 4,
 };
+const font = 1;
 const getSizes = () => {
   return Object.entries(fontSizes).reduce((acc, [name, multiplier]) => {
     return {
       ...acc,
-      [name]: `${multiplier}rem`,
-      [`m${name}`]: `${multiplier * 0.75}rem`,
+      [name]: `${multiplier * font}rem`,
+      [`m${name}`]: `${multiplier * font * 0.75}rem`,
     };
   }, {});
 };

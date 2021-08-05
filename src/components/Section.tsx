@@ -9,20 +9,23 @@ type SectionProps = {
   backgroundColor?: AppColor;
   className?: string;
   bgImage?: any;
+  id?: string;
 };
 
 const Section: React.FC<SectionProps> = (props) => {
   const {
     children,
-
     type = 'normal',
     className = '',
+    id,
     // bgImage,
   } = props;
 
   return (
     // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
     <section
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...(id ? { id } : {})}
       className={cx(
         'relative',
 

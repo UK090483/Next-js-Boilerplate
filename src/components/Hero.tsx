@@ -60,7 +60,7 @@ const Hero: React.FunctionComponent<HeroBlockProps> = (props) => {
         { 'h-[66vh]': size === '2/3' }
       )}
     >
-      <Photo photo={photo} layout="fill" maxWidth={1600} />
+      <Photo photo={photo} layout="fill" maxWidth={1600} loading="eager" />
       {filterIntensity !== '0' && (
         <div
           className={classNames(
@@ -91,8 +91,7 @@ const Hero: React.FunctionComponent<HeroBlockProps> = (props) => {
       >
         {title && (
           <motion.h1 className="mt-0" variants={item}>
-            {' '}
-            {title}{' '}
+            {title}
           </motion.h1>
         )}
         {text && (

@@ -16,6 +16,7 @@
   "dependencies": {
     "@n8tb1t/use-scroll-position": "^2.0.3",
     "@tailwindcss/typography": "^0.4.1",
+    "animated-scroll-to": "^2.2.0",
     "classnames": "^2.3.1",
     "fork-ts-checker-webpack-plugin": "^6.2.12",
     "framer-motion": "^4.1.17",

@@ -38,6 +38,7 @@ export type SiteResult = {
     kontaktMail?: string;
     kontaktTel?: string;
     url?: string;
+    cvr?: string;
   };
   navigation: {
     main: NavigationItem[];

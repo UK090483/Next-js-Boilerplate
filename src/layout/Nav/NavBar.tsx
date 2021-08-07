@@ -19,9 +19,11 @@ const NavBar: React.FunctionComponent<INavBarProps> = ({
   useScrollPosition(
     ({ prevPos, currPos }) => {
       const isShow = currPos.y < -600;
-      const dir = prevPos.y > currPos.y;
-      if (isShow !== scrolled || dir !== hide)
-        setState({ hide: dir, scrolled: isShow });
+      const currentPosY = currPos.y > 0 ? 0 : currPos.y;
+      const prefPosY = prevPos.y > 0 ? 0 : prevPos.y;
+      const nextHide = currPos.y > 1 ? false : prefPosY > currentPosY;
+      if (isShow !== scrolled || nextHide !== hide)
+        setState({ hide: nextHide, scrolled: isShow });
     },
     [scrolled, hide]
   );

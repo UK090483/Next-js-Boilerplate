@@ -3,6 +3,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 
+import animateScrollTo from 'animated-scroll-to';
 import cx from 'classnames';
 import Link from 'next/link';
 
@@ -66,12 +67,9 @@ const Button: React.FC<LinkProps | ClickProps> = (props) => {
     const handleScroll = () => {
       const urlObject = new URL(props.link);
       const element = document.querySelector(urlObject.hash);
+
       if (element) {
-        element.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start',
-          inline: 'nearest',
-        });
+        animateScrollTo(element, { speed: 1000 });
       }
     };
 

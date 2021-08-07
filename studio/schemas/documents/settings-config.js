@@ -26,6 +26,11 @@ export default {
       title: 'Kontakt Adress',
       type: 'text',
     },
+    {
+      name: 'cvr',
+      title: 'CVR number',
+      type: 'string',
+    },
   ],
   preview: {
     prepare() {

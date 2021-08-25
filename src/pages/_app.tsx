@@ -5,9 +5,7 @@ import React from 'react';
 // @ts-ignore
 import { PageTransition } from 'next-page-transitions';
 import { AppProps as NextAppProps } from 'next/app';
-
 import '../styles/main.css';
-
 import { useRouter } from 'next/router';
 
 import PreviewIndicator from '@lib/PreviewIndicator';

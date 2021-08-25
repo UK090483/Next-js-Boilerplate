@@ -1,12 +1,10 @@
 import admin from 'firebase-admin';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-import serviceAccount from '@lib/service-account.json';
-
 if (admin.apps.length < 1) {
   admin.initializeApp({
     // @ts-ignore
-    credential: admin.credential.cert(serviceAccount),
+    credential: admin.credential.cert(JSON.parse(process.env.FIREBASE_CRED)),
   });
 }
 

@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import admin from 'firebase-admin';
 import { NextApiRequest, NextApiResponse } from 'next';
 
@@ -14,10 +15,12 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  const uuid = req.cookies._lytics_id || 'noooId';
+
   const IP =
     (req.headers['x-real-ip'] as string) || req.socket.localAddress || 'hmmmmm';
 
-  const sfDocRef = await db.collection('test').doc(IP);
+  const sfDocRef = await db.collection('test').doc(uuid);
   const date = Date.now();
 
   try {
@@ -25,20 +28,25 @@ export default async function handler(
       const doc = await t.get(sfDocRef);
 
       if (!doc.exists) {
-        await t.set(sfDocRef, { lastX: date });
+        await t.set(sfDocRef, { lastX: date, IP });
 
         return res.json({
-          bam: 'bam',
           headers: req.headers,
-          'req.socket.remoteAddress': req.socket.remoteAddress,
-          'req.socket.localAddress': req.socket.localAddress,
         });
       }
 
       const data = doc.data();
       const newActions =
         data && data.actions
-          ? [...data.actions, { path: req.headers.referer, time: date }]
+          ? [
+              ...data.actions,
+              {
+                path: req.headers.referer,
+                time: date,
+                IP,
+                userAgent: req.headers['user-agent'],
+              },
+            ]
           : [];
       t.update(sfDocRef, { actions: newActions });
 
@@ -46,32 +54,11 @@ export default async function handler(
     });
 
     return res.json({
-      bam: 'bam',
       headers: req.headers,
-      'req.socket.remoteAddress': req.socket.remoteAddress,
-      'req.socket.localAddress': req.socket.localAddress,
     });
   } catch (error) {
     return res.json({
-      bam: 'bam',
       headers: req.headers,
-      'req.socket.remoteAddress': req.socket.remoteAddress,
-      'req.socket.localAddress': req.socket.localAddress,
     });
   }
-
-  // if (item.exists) {
-  //   await db
-  //     .collection('test')
-  //     .doc(req.socket.localAddress)
-  //     .set({ lastX: date });
-  //   return res.json({
-  //     bam: 'bam',
-  //     headers: req.headers,
-  //     'req.socket.remoteAddress': req.socket.remoteAddress,
-  //     'req.socket.localAddress': req.socket.localAddress,
-  //   });
-  // }
-
-  // await db.collection('test').doc(req.socket.localAddress).set({ lastX: date });
 }

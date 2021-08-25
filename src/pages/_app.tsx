@@ -8,7 +8,10 @@ import { AppProps as NextAppProps } from 'next/app';
 
 import '../styles/main.css';
 
+import { useRouter } from 'next/router';
+
 import PreviewIndicator from '@lib/PreviewIndicator';
+import useLytics from '@lib/useLytics';
 import Footer from '@src/layout/Footer';
 import { Meta } from '@src/layout/Meta';
 import { PageProps } from '@src/pageTypes/page/Page';
@@ -20,6 +23,19 @@ type AppProps<P = any> = {
 } & Omit<NextAppProps<P>, 'pageProps'>;
 
 const MyApp = ({ Component, pageProps }: AppProps<PageProps>) => {
+  const { routeChange, init } = useLytics();
+  const router = useRouter();
+  React.useEffect(() => {
+    init();
+    const handleRouteChange = () => {
+      routeChange();
+    };
+    router.events.on('routeChangeComplete', handleRouteChange);
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, []);
+
   return (
     <main className="mx-auto bg-white max-w-app_max_width">
       {!pageProps.preview && <Nav {...pageProps.data} />}

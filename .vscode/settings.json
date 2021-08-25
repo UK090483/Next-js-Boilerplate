@@ -39,7 +39,7 @@
     ".eslintignore": true,
     "README.md": true,
     ".eslintrc": true,
-    ".gitignore": true,
+    ".gitignore": false,
     "lint-staged.config.js": true,
     "netlify.toml": true,
     "next-env.d.ts": true,

@@ -32,7 +32,8 @@ const MyApp = ({ Component, pageProps }: AppProps<PageProps>) => {
     return () => {
       router.events.off('routeChangeComplete', handleRouteChange);
     };
-  }, [routeChange, init, router.events]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <main className="mx-auto bg-white max-w-app_max_width">

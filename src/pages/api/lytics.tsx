@@ -16,6 +16,7 @@ export default async function handler(
 ) {
   const IP =
     (req.headers['x-real-ip'] as string) || req.socket.localAddress || 'hmmmmm';
+
   const sfDocRef = await db.collection('test').doc(IP);
   const date = Date.now();
 
@@ -24,7 +25,14 @@ export default async function handler(
       const doc = await t.get(sfDocRef);
 
       if (!doc.exists) {
-        await sfDocRef.set({ lastX: date });
+        await t.set(sfDocRef, { lastX: date });
+
+        return res.json({
+          bam: 'bam',
+          headers: req.headers,
+          'req.socket.remoteAddress': req.socket.remoteAddress,
+          'req.socket.localAddress': req.socket.localAddress,
+        });
       }
 
       const data = doc.data();
@@ -33,6 +41,8 @@ export default async function handler(
           ? [...data.actions, { path: req.headers.referer, time: date }]
           : [];
       t.update(sfDocRef, { actions: newActions });
+
+      return true;
     });
 
     return res.json({

@@ -96,8 +96,7 @@ const Button: React.FC<LinkProps | ClickProps> = (props) => {
       <a
         rel="noreferrer"
         target="_blank"
-        style={{ cursor: 'none' }}
-        className={` ${className} ${extraClasses}`}
+        className={`${className} ${extraClasses}`}
         href={props.link}
       >
         {label}
@@ -109,7 +108,6 @@ const Button: React.FC<LinkProps | ClickProps> = (props) => {
     return (
       <button
         type="button"
-        style={{ cursor: 'none' }}
         className={` ${className} ${extraClasses}`}
         onClick={() => {
           props.onClick();

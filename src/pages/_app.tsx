@@ -26,6 +26,7 @@ const MyApp = ({ Component, pageProps }: AppProps<PageProps>) => {
   const { routeChange, init } = useLytics();
   const router = useRouter();
   React.useEffect(() => {
+    console.log('run lytics');
     init();
     const handleRouteChange = () => {
       routeChange();
@@ -34,7 +35,7 @@ const MyApp = ({ Component, pageProps }: AppProps<PageProps>) => {
     return () => {
       router.events.off('routeChangeComplete', handleRouteChange);
     };
-  }, []);
+  }, [routeChange, init]);
 
   return (
     <main className="mx-auto bg-white max-w-app_max_width">

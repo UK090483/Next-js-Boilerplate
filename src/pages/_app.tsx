@@ -6,7 +6,6 @@ import React from 'react';
 import { PageTransition } from 'next-page-transitions';
 import { AppProps as NextAppProps } from 'next/app';
 import '../styles/main.css';
-import { useRouter } from 'next/router';
 
 import PreviewIndicator from '@lib/PreviewIndicator';
 import useLytics from '@lib/useLytics';
@@ -21,19 +20,7 @@ type AppProps<P = any> = {
 } & Omit<NextAppProps<P>, 'pageProps'>;
 
 const MyApp = ({ Component, pageProps }: AppProps<PageProps>) => {
-  const { routeChange, init } = useLytics();
-  const router = useRouter();
-  React.useEffect(() => {
-    init();
-    const handleRouteChange = () => {
-      routeChange();
-    };
-    router.events.on('routeChangeComplete', handleRouteChange);
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  useLytics();
 
   return (
     <main className="mx-auto bg-white max-w-app_max_width">

@@ -17,18 +17,26 @@ export default async function handler(
 ) {
   const uuid = req.cookies._lytics_id || 'noooId';
 
-  const IP =
-    (req.headers['x-real-ip'] as string) || req.socket.localAddress || 'hmmmmm';
+  const action = {
+    referer: req.headers.referer,
+    host: req.headers.host,
+    time: Date.now(),
+    IP:
+      (req.headers['x-real-ip'] as string) ||
+      req.socket.localAddress ||
+      'hmmmmm',
+    userAgent: req.headers['user-agent'],
+    ...req.query,
+  };
 
   const sfDocRef = await db.collection('test').doc(uuid);
-  const date = Date.now();
 
   try {
-    await db.runTransaction(async (t) => {
+    return await db.runTransaction(async (t) => {
       const doc = await t.get(sfDocRef);
 
       if (!doc.exists) {
-        await t.set(sfDocRef, { lastX: date, IP });
+        await t.set(sfDocRef, { actions: [action] });
 
         return res.json({
           headers: req.headers,
@@ -41,20 +49,15 @@ export default async function handler(
           ? [
               ...data.actions,
               {
-                path: req.headers.referer,
-                time: date,
-                IP,
-                userAgent: req.headers['user-agent'],
+                ...action,
               },
             ]
           : [];
       t.update(sfDocRef, { actions: newActions });
 
-      return true;
-    });
-
-    return res.json({
-      headers: req.headers,
+      return res.json({
+        headers: req.headers,
+      });
     });
   } catch (error) {
     return res.json({

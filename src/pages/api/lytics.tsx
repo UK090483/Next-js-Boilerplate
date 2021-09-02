@@ -17,10 +17,12 @@ export default async function handler(
 ) {
   const uuid = req.cookies._lytics_id || 'noooId';
 
+  const updatedAt = admin.firestore.Timestamp.now();
+
   const action = {
     referer: req.headers.referer,
     host: req.headers.host,
-    time: Date.now(),
+    time: updatedAt,
     IP:
       (req.headers['x-real-ip'] as string) ||
       req.socket.localAddress ||
@@ -36,7 +38,11 @@ export default async function handler(
       const doc = await t.get(sfDocRef);
 
       if (!doc.exists) {
-        await t.set(sfDocRef, { actions: [action] });
+        await t.set(sfDocRef, {
+          updatedAt,
+          createdAt: updatedAt,
+          actions: [action],
+        });
 
         return res.json({
           headers: req.headers,
@@ -53,7 +59,7 @@ export default async function handler(
               },
             ]
           : [];
-      t.update(sfDocRef, { actions: newActions });
+      t.update(sfDocRef, { updatedAt, actions: newActions });
 
       return res.json({
         headers: req.headers,

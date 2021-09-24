@@ -1,6 +1,7 @@
 import React from 'react'
 import { AiOutlineBorderOuter } from 'react-icons/ai'
 import { colorList, sizesList } from '../snippets'
+import { makeFieldInternational } from '../../helper/makeFieldInternational';
 export default {
   type: 'object',
   name: 'section',
@@ -24,16 +25,12 @@ export default {
       type: 'string',
       title: 'Title'
     },
-    {
+   ...makeFieldInternational( {
       name: 'content',
       type: 'defaultRichText',
       title: 'Content'
-    },
-    {
-      name: 'content_en',
-      type: 'defaultRichText',
-      title: 'Content En'
-    },
+    }),
+  
     {
       title: 'Type',
       name: 'type',

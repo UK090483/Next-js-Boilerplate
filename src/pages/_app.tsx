@@ -3,32 +3,29 @@
 import React from 'react';
 
 // @ts-ignore
-import { PageTransition } from 'next-page-transitions';
+// import { PageTransition } from 'next-page-transitions';
 import { AppProps as NextAppProps } from 'next/app';
 import '../styles/main.css';
 
-import PreviewIndicator from '@lib/PreviewIndicator';
-import useLytics from '@lib/useLytics';
-import Footer from '@src/layout/Footer';
-import { Meta } from '@src/layout/Meta';
+import Footer from '@components/layout/Footer';
+import { Meta } from '@components/layout/Meta';
+import PreviewIndicator from '@components/PreviewIndicator';
 import { PageProps } from '@src/pageTypes/page/Page';
 
-import Nav from '../layout/Nav/Nav';
+import Nav from '../components/layout/Nav/Nav';
 
 type AppProps<P = any> = {
   pageProps: P;
 } & Omit<NextAppProps<P>, 'pageProps'>;
 
 const MyApp = ({ Component, pageProps }: AppProps<PageProps>) => {
-  useLytics();
-
   return (
     <main className="mx-auto bg-white max-w-app_max_width">
       {!pageProps.preview && <Nav {...pageProps.data} />}
       <Meta {...pageProps.data} />
-      <PageTransition timeout={300} classNames="page-transition">
-        <Component {...pageProps} />
-      </PageTransition>
+      {/* <PageTransition timeout={300} classNames="page-transition"> */}
+      <Component {...pageProps} />
+      {/* </PageTransition> */}
       <Footer {...pageProps.data} />
       {pageProps.preview && <PreviewIndicator />}
     </main>

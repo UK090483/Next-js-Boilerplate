@@ -3,7 +3,7 @@ import * as React from 'react';
 import classNames from 'classnames';
 import { AnimationProps, motion } from 'framer-motion';
 
-import type { HeroBlockProps } from '@src/pageBuilder/Blocks/HeroBlock';
+import type { HeroBlockProps } from '@lib/pageBuilder/Blocks/HeroBlock';
 
 import Button from './buttons/button';
 import Photo from './Photo';

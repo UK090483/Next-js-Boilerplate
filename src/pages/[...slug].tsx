@@ -3,12 +3,12 @@ import React from 'react';
 
 import type { GetStaticPaths, GetStaticProps } from 'next';
 
-import Nav from '@src/layout/Nav/Nav';
+import Nav from '@components/layout/Nav/Nav';
 import { AppLocations } from 'types';
 
-import { getAllDocPaths } from '../lib/fetchDocPath';
-import { handleStaticProps } from '../lib/handleStaticProps';
-import sanity from '../lib/sanity';
+import { getAllDocPaths } from '../lib/api/fetchDocPath';
+import { handleStaticProps } from '../lib/api/handleStaticProps';
+// import sanity from '../lib/sanity';
 import PageTemplate from '../pageTypes/page/Page';
 import { pageQuery, PageResult } from '../pageTypes/page/pageQueries';
 
@@ -24,18 +24,20 @@ const query = `*[_type == "page" && slug.current == $slug][0]{
 }`;
 
 const Page: React.FC<PageProps> = (props) => {
-  const { data: pageData, lang, slug, preview } = props;
-  const { data } = sanity.usePreviewSubscription(query, {
-    params: { slug },
-    initialData: pageData,
-    enabled: !!preview,
-  });
+  const { data: pageData, lang, preview } = props;
 
-  if (!data) return <div>Page</div>;
+  // const { data } = sanity.usePreviewSubscription(query, {
+  //   params: { slug },
+  //   initialData: pageData,
+  //   enabled: !!preview,
+  // });
+
+  if (!pageData) return <div>Page</div>;
+
   return (
     <>
-      <Nav {...data} />
-      <PageTemplate lang={lang} data={data} preview={preview} />
+      <Nav {...pageData} />
+      <PageTemplate lang={lang} data={pageData} preview={preview} />
     </>
   );
 };

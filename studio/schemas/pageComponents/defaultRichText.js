@@ -117,7 +117,7 @@ export default {
     // { type: 'embed' },
     // { type: 'imagePlug' },
     // { type: 'seoHeader' },
-    // { type: 'imageGalleryPlug' },
+     { type: 'imageGalleryPlug' },
     // { type: 'innerSection' },
      
     // { type: 'download' }

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import BodyParser from '@src/pageBuilder/BodyParser';
+import BodyParser from '@lib/pageBuilder/BodyParser';
 import { AppLocations } from 'types';
 
 import type { PageResult } from './pageQueries';

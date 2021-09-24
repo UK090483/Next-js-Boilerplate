@@ -35,7 +35,8 @@ export default {
       title: 'Footer',
       to: [{ type: 'footer' }]
     },
-    defaultBockContent,
+
+     defaultBockContent,
 
     {
       title: 'SEO / Share Settings',

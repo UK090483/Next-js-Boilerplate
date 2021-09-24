@@ -4,7 +4,7 @@ import { groq } from 'next-sanity';
 import { siteQuery } from '@lib/queries/siteQuery';
 import type { SiteResult } from '@lib/queries/siteQuery';
 
-import { body, PageBodyResult } from '../../pageBuilder/pageBuilderQueries';
+import { body, PageBodyResult } from '../../lib/pageBuilder/pageBuilderQueries';
 
 export const pageQuery = groq`
 ...,
